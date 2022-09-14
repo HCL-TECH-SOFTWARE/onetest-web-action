@@ -29,11 +29,11 @@ jobs:
         runs-on: self-hosted
         steps:
          - name: HCL OneTest WEBUI
-           uses: HCL-TECH-SOFTWARE/onetest-web-action@v1
+           uses: HCL-TECH-SOFTWARE/onetest-web-action@main
            with:
             workspace: <C:\Data\SampleWorkspace>
             project: <MyProject>
-            suite: <MySuite<
+            suite: <MySuite>
 ```
 
 3. Update the parameterized items to refer to your project and tests (see parameter details below).
@@ -47,7 +47,7 @@ As an alternative to having all of the test projects pre-configured on the runne
 ### Required Parameters
 - **workspace** Complete path to Eclipse workspace.
 - **project** The name of the project containing the test.	
-- **suite** Specify the relative path from the project to the test including the file name of the test. A test can be WebUI test, Compound test, Performance schedule or Accelerated Functional Test (AFT) suite. The test suite name must contain the file extension when it is an AFT suite. To run multiple tests from the same project sequentially, you must separate the tests by a colon (:). If you provide multiple tests, you cannot include an AFT suite along with it.
+- **suite** The relative path from the project to the test including the file name of the test. A test can be WebUI test, Compound test, Performance schedule or Accelerated Functional Test (AFT) suite. The test suite name must contain the file extension when it is an AFT suite. To run multiple tests from the same project sequentially, you must separate the tests by a colon (:). If you provide multiple tests, you cannot include an AFT suite along with it.
 
 ### Optional Parameters
 - **imShared** Complete path to HCLIMShared location, if it is not at default location.
