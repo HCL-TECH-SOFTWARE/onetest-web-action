@@ -8,7 +8,7 @@ jobs:
         name: HCL OneTest WEBUI
         steps:
          - name: HCL OneTest WEBUI
-           uses: HCL-TECH-SOFTWARE/WebUITestAction@main
+           uses: HCL-TECH-SOFTWARE/onetest-web-action@v1
            with:
             workspace: 
             project: 
