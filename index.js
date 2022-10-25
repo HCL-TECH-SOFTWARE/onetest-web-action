@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 const core = require('@actions/core');
 const github = require('@actions/github');
 const path = require("path");
@@ -16,6 +17,7 @@ const main = async () => {
         const productpath = getProductPath();
         const configfile = core.getInput('configFile', { required: false });
         var suite;
+        var script;
 
         if (configfile) {
             if (process.platform == 'linux') {
@@ -143,7 +145,7 @@ const main = async () => {
         }
 
         let tempDir = os.tmpdir();
-        let filePath = path.join(tempDir, suite + '.ps1');
+        let filePath = path.join(tempDir, uuidv4() + '.ps1');
         await fs.writeFileSync(
             filePath,
             script,
