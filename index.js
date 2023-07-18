@@ -17,10 +17,13 @@ const main = async () => {
         const productpath = getProductPath();
         const configfile = core.getInput('configFile', { required: false });
         var suite;
-        var script;
+        var script='';
 
+        console.log("Platform is :", process.platform);
+        
         if (configfile) {
-            if (process.platform == 'linux') {
+            console.log("Platform is :", process.platform);
+            if (process.platform == 'linux' || process.platform == 'darwin') {
                 script = 'cd ' + '"' + productpath + '/cmdline"' + '\n'
                     + 'bash cmdline.sh'
                     + ' -configfile ' + '"' + configfile + '"';
@@ -64,7 +67,7 @@ const main = async () => {
                 core.setFailed("WorkSpace,Project & Suite are mandatory parameters");
             }
 
-            if (process.platform == 'linux') {
+            if (process.platform == 'linux' || process.platform == 'darwin') {
                 script = 'cd ' + '"' + productpath + '/cmdline"' + '\n'
                     + 'bash cmdline.sh'
                     + ' -workspace ' + '"' + workspace + '"'
@@ -85,7 +88,7 @@ const main = async () => {
                 script = script.concat(' -aftsuite ' + '"' + suite + '"');
             }
             else {
-                script = script.concat(' -suite ' + '"' + suite + '"');
+                   script = script.concat(' -suite ' + '"' + suite + '"');  
             }
             if (labels) {
                 script = script.concat(' -labels ' + '"' + labels + '"');
@@ -154,7 +157,12 @@ const main = async () => {
         console.log(script);
         console.log('========================== Starting Command Output ===========================');
         var spawn = require("child_process").spawn, child;
+        if (process.platform == 'darwin') {
+        child = spawn("pwsh", [filePath]);
+        }
+        else{
         child = spawn("powershell.exe", [filePath]);
+        }
         child.stdout.on("data", function (data) {
             console.log(" " + data);
         });
@@ -270,7 +278,7 @@ function getImsharedLoc(productpath) {
     }
     ibmloc = productpath.substring(0, rollupIndex);
     // Need to add proper sharedlocation HCL/IBM - hardcoded to HCL
-    return ibmloc + path.sep + "HCLIMShared";
+    return ibmloc + path.sep + "IBMIMShared";
 }
 function isEmptyOrSpaces(dataset) {
     return dataset === null || dataset.match(/^ *$/) !== null;
