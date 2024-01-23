@@ -1,29 +1,31 @@
 {
-  "name": "webuiaction",
+  "name": "onetest-webuiaction",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ncc build index.js -o dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SonaHJ/WebUIAction.git"
+    "url": "git+https://github.com/HCL-TECH-SOFTWARE/onetest-web-action.git"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/SonaHJ/WebUIAction/issues"
+    "url": "https://github.com/HCL-TECH-SOFTWARE/onetest-web-action/issues"
   },
-  "homepage": "https://github.com/SonaHJ/WebUIAction#readme",
+  "homepage": "https://github.com/HCL-TECH-SOFTWARE/onetest-web-action/blob/main/README.md",
   "dependencies": {
-    "@actions/core": "^1.10.0",
+    "@actions/core": "^1.10.1",
     "@actions/github": "^5.1.1",
     "@types/mocha": "^9.1.1",
     "@types/q": "^1.5.5",
-    "@vercel/ncc": "^0.34.0",
     "path": "^0.12.7",
     "uuid": "^8.3.2"
-  }
-}
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.34.0"
+  }}
